@@ -12,6 +12,9 @@ type rot13Reader struct {
 
 func (reader rot13Reader) Read(b []byte) (n int, err error) {
 	n, err = reader.r.Read(b)
+	if err != nil {
+		return 0, err
+	}
 	for i := 0; i < n; i++ {
 		caseInsensetiveLetter := strings.ToLower(string(b[i]))
 		if caseInsensetiveLetter >= "a" && caseInsensetiveLetter <= "m" {
